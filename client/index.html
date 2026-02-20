@@ -1,1 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Flipkart Dummy</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    </head>
+<body>
+
+<!-- NAVBAR -->
+<nav class="navbar">
+    <div class="logo">
+    <img src="D:\DEXPLAZA\Untitled_design-1-removebg-preview.png"Logo">  
+    <span class="dex">dexplaza.in</span></div>
+    <div class="search-box">
+        <input type="text" placeholder="Search for products, brands and more">
+        <button><i class="fas fa-search"></i></button>
+    </div>
+
+    <div class="nav-links">
+        <a href="login.html" class="login-link">
+    <i class="fas fa-user"></i> Login </a>
+        <a href="cart.html" class="cart-icon">
+    <i class="fas fa-shopping-cart"></i>
+    <span id="cart-count">0</span> </a>
+        <a href="#">More</a>
+    </div>
+</nav>
+
+<!-- CATEGORY BAR -->
+<div class="category-bar">
+    <div class="category">Mobiles</div>
+    <div class="category">Fashion</div>
+    <div class="category">Electronics</div>
+    <div class="category">Home</div>
+    <div class="category">Beauty</div>
+    <div class="category">Toys</div>
+    <div class="category">More</div>
+    <span class="underline"></span>
+    
+</div>
+
+<!-- BANNER -->
+<div class="banner">
+    <h2>Welcome to Dexplaza</h2>
+    <p>Best deals · Big discounts · Free delivery</p>
+</div>
+
+<!-- PRODUCT SECTION -->
+<h2 class="section-title">Top Deals For You</h2>
+
+<div class="product-grid">
+
+    <div class="product">
+        <img src="images/p1.jpg">
+        <h3>Redmi Note 12</h3>
+        <p>₹12,999</p>
+        <button onclick="addToCart()">Add to Cart</button>
+    </div>
+
+    <div class="product">
+        <img src="images/p2.jpg">
+        <h3>OnePlus Nord CE</h3>
+        <p>₹18,999</p>
+        <button onclick="addToCart()">Add to Cart</button>
+    </div>
+
+    <div class="product">
+        <img src="images/p3.jpg">
+        <h3>Iphone 13</h3>
+        <p>₹52,999</p>
+        <button onclick="addToCart()">Add to Cart</button>
+    </div>
+
+    <div class="product">
+        <img src="images/p4.jpg">
+        <h3>Samsung A34</h3>
+        <p>₹24,999</p>
+        <button onclick="addToCart()">Add to Cart</button>
+    </div>
+
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
 
