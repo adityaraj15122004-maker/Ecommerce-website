@@ -1,12 +1,28 @@
-let cart = 0;
+let cart = JSON.parse(localStorage.getItem("cart")) || [];
 
-function addToCart() {
-    cart++;
-    document.getElementById("cart-count").innerText = cart;
-    alert("Item added to cart!");
+// Add to cart function
+function addToCart(name, price, image) {
+
+    const product = {
+        name: name,
+        price: price,
+        image: image
+    };
+
+    cart.push(product);
+
+    localStorage.setItem("cart", JSON.stringify(cart));
+
+    document.getElementById("cart-count").innerText = cart.length;
+
+    alert(name + " added to cart!");
 }
 
-// Sliding underline + selected color functionality
+// Update cart count on page load
+document.getElementById("cart-count").innerText = cart.length;
+
+
+// CATEGORY underline functionality
 const categories = document.querySelectorAll('.category');
 const underline = document.querySelector('.category-bar .underline');
 
@@ -15,29 +31,24 @@ function moveUnderline(category) {
     underline.style.left = category.offsetLeft + 'px';
 }
 
-// Initially select the first category
 if (categories.length > 3) {
     categories[3].classList.add('selected');
     moveUnderline(categories[3]);
 }
 
-// Sliding underline + color for categories
 categories.forEach((category, index) => {
     category.addEventListener('click', () => {
-        // Remove all previous selected classes
         categories.forEach(cat => {
             cat.classList.remove('selected');
             cat.classList.remove('selected-7');
         });
 
-        // Apply color
         if (index === 6) {
-            category.classList.add('selected-7'); // 7th category blue
+            category.classList.add('selected-7');
         } else {
-            category.classList.add('selected'); // others golden
+            category.classList.add('selected');
         }
 
-        // Move the underline
         moveUnderline(category);
     });
 });
