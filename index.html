@@ -2,17 +2,21 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Flipkart Dummy</title>
+    <title>Dexplaza - Home</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    </head>
+</head>
+
 <body>
 
 <!-- NAVBAR -->
 <nav class="navbar">
     <div class="logo">
-    <img src="D:\DEXPLAZA\Untitled_design-1-removebg-preview.png"Logo">  
-    <span class="dex">dexplaza.in</span></div>
+        <!-- Make sure logo is inside images folder -->
+        <img src="images/logo.png" alt="Dexplaza Logo">
+        <span class="dex">dexplaza.in</span>
+    </div>
+
     <div class="search-box">
         <input type="text" placeholder="Search for products, brands and more">
         <button><i class="fas fa-search"></i></button>
@@ -20,10 +24,14 @@
 
     <div class="nav-links">
         <a href="login.html" class="login-link">
-    <i class="fas fa-user"></i> Login </a>
+            <i class="fas fa-user"></i> Login
+        </a>
+
         <a href="cart.html" class="cart-icon">
-    <i class="fas fa-shopping-cart"></i>
-    <span id="cart-count">0</span> </a>
+            <i class="fas fa-shopping-cart"></i>
+            <span id="cart-count">0</span>
+        </a>
+
         <a href="#">More</a>
     </div>
 </nav>
@@ -38,7 +46,6 @@
     <div class="category">Toys</div>
     <div class="category">More</div>
     <span class="underline"></span>
-    
 </div>
 
 <!-- BANNER -->
@@ -53,36 +60,44 @@
 <div class="product-grid">
 
     <div class="product">
-        <img src="images/p1.jpg">
+        <img src="images/p1.jpg" alt="Redmi Note 12">
         <h3>Redmi Note 12</h3>
         <p>₹12,999</p>
-        <button onclick="addToCart()">Add to Cart</button>
+        <button onclick="addToCart('Redmi Note 12',12999,'images/p1.jpg')">
+            Add to Cart
+        </button>
     </div>
 
     <div class="product">
-        <img src="images/p2.jpg">
+        <img src="images/p2.jpg" alt="OnePlus Nord CE">
         <h3>OnePlus Nord CE</h3>
         <p>₹18,999</p>
-        <button onclick="addToCart()">Add to Cart</button>
+        <button onclick="addToCart('OnePlus Nord CE',18999,'images/p2.jpg')">
+            Add to Cart
+        </button>
     </div>
 
     <div class="product">
-        <img src="images/p3.jpg">
-        <h3>Iphone 13</h3>
+        <img src="images/p3.jpg" alt="iPhone 13">
+        <h3>iPhone 13</h3>
         <p>₹52,999</p>
-        <button onclick="addToCart()">Add to Cart</button>
+        <button onclick="addToCart('iPhone 13',52999,'images/p3.jpg')">
+            Add to Cart
+        </button>
     </div>
 
     <div class="product">
-        <img src="images/p4.jpg">
+        <img src="images/p4.jpg" alt="Samsung A34">
         <h3>Samsung A34</h3>
         <p>₹24,999</p>
-        <button onclick="addToCart()">Add to Cart</button>
+        <button onclick="addToCart('Samsung A34',24999,'images/p4.jpg')">
+            Add to Cart
+        </button>
     </div>
 
 </div>
 
 <script src="script.js"></script>
+
 </body>
 </html>
-
