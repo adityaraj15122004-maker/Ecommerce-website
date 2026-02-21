@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - Secure Access</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        /* --- VIBRANT CSS STYLES --- */
+     :root {
+    --active-gradient: linear-gradient(to right, #0A81AD 0%, #0A81AD 100%); /* Blue */
+    --input-focus: #0A81AD; /* Blue for input focus */
+}
+
+       body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Poppins', sans-serif;
+    /* Animated Background in blue shades */
+    background: linear-gradient(-45deg, #046385, #0580a8, #0a9fcf, #12b4e0);
+    background-size: 400% 400%;
+    animation: gradientBG 15s ease infinite;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+@keyframes gradientBG {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+        .auth-container {
+            background: rgba(255, 255, 255, 0.95); /* Glass effect */
+            width: 100%;
+            max-width: 400px;
+            padding: 40px 30px;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.2);
+            position: relative;
+            overflow: hidden;
+            text-align: center;
+        }
+
+        /* Top Decorative Line */
+        .auth-container::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0;
+            height: 6px;
+            background: var(--active-gradient);
+        }
+
+        h2 {
+           margin-bottom: 30px;
+           font-size: 28px;
+           font-weight: 700;
+           color: #046385; /* blue color */
+           background: none; /* remove gradient */
+          -webkit-background-clip: unset;
+          -webkit-text-fill-color: unset;
+}
+
+        .input-group {
+            margin-bottom: 20px;
+            text-align: left;
+        }
+
+        .input-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 600;
+    color: #555;
+    font-size: 14px;
+}
+
+.input-wrapper {
+    position: relative;
+}
+
+.input-wrapper i {
+    position: absolute;
+    left: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #aaa;
+    transition: 0.3s;
+}
+
+input {
+    width: 100%;
+    padding: 15px 15px 15px 45px; /* left padding for icon */
+    border: 2px solid #f0f0f0;
+    border-radius: 10px;
+    font-size: 15px;
+    background: #fafafa;
+    outline: none;
+    transition: 0.3s;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+input:focus {
+    border-color: #046385; /* blue border on focus */
+    background: #fff;
+    box-shadow: 0 0 0 4px rgba(4, 99, 133, 0.1); /* subtle blue glow */
+}
+
+input:focus + i {
+    color: #046385; /* icon turns blue on focus */
+}
+
+       .auth-btn {
+    width: 100%;
+    padding: 15px;
+    border: none;
+    border-radius: 50px;
+    background: #046385; /* solid blue */
+    color: #fff;          /* text color */
+    font-size: 18px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.3s;
+    margin-top: 10px;
+    box-shadow: 0 10px 20px rgba(4, 99, 133, 0.3); /* matching blue shadow */
+    text-transform: uppercase;
+    letter-spacing: 1px;
+       }
+
+       .auth-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 15px 25px rgba(4, 99, 133, 0.5); /* darker shadow on hover */
+       }
+
+        .links {
+            margin-top: 25px;
+            font-size: 14px;
+            color: #666;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .links a {
+            color: #046385;
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .links a:hover {
+            text-decoration: underline;
+        }
+        
+        .forgot-pass {
+            text-align: right;
+            font-size: 13px;
+            margin-bottom: 20px;
+        }
+        .forgot-pass a { color: #888; }
+
+    </style>
+</head>
+<body>
+
+<div class="auth-container">
+    <h2>Login</h2>
+
+    <form action="#">
+        <div class="input-group">
+            <label>Email or Phone</label>
+            <div class="input-wrapper">
+                <input type="text" placeholder="Enter your email or phone" required>
+                <i class="fa-solid fa-envelope"></i> </div>
+        </div>
+
+        <div class="input-group">
+            <label>Password</label>
+            <div class="input-wrapper">
+                <input type="password" placeholder="Enter your password" required>
+                <i class="fa-solid fa-lock"></i> </div>
+        </div>
+
+        <div class="forgot-pass">
+            <a href="#">Forgot Password?</a>
+        </div>
+
+        <button type="submit" class="auth-btn">Login</button>
+    </form>
+
+    <div class="links">
+        <p>Don't have an account? <a href="register.html">Register Here</a></p>
+    </div>
+</div>
+
+</body>
+</html>
