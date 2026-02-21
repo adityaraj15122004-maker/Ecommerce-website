@@ -2,78 +2,72 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>MyKart - Cart</title>
-    <link rel="stylesheet" href="../css/style.css">
+    <title>Dexplaza - Cart</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-    <!-- Navbar -->
-    <div id="navbar"></div>
-
-    <div class="cart-container">
-        <h2>Your Shopping Cart 🛒</h2>
-
-        <div id="cart-items"></div>
-
-        <div class="cart-summary">
-            <h3 id="total-price">Total: ₹0</h3>
-            <button id="checkout-btn">Proceed to Checkout</button>
-        </div>
+<nav class="navbar">
+    <div class="logo">
+        <span class="dex">dexplaza.in</span>
     </div>
+    <a href="index.html" style="color:white;">← Back to Home</a>
+</nav>
 
-    <!-- Footer -->
-    <div id="footer"></div>
+<div class="cart-container" style="padding:20px;">
+    <h2>Your Shopping Cart 🛒</h2>
 
-    <script type="module">
+    <div id="cart-items"></div>
 
-        import { loadNavbar } from "../js/components/navbar.js";
-        import { loadFooter } from "../js/components/footer.js";
+    <h3 id="total-price">Total: ₹0</h3>
+</div>
 
-        document.getElementById("navbar").innerHTML = loadNavbar();
-        document.getElementById("footer").innerHTML = loadFooter();
+<script>
 
-        let cart = JSON.parse(localStorage.getItem("cart")) || [];
+let cart = JSON.parse(localStorage.getItem("cart")) || [];
 
-        const cartItemsContainer = document.getElementById("cart-items");
-        const totalPriceElement = document.getElementById("total-price");
+const cartItemsContainer = document.getElementById("cart-items");
+const totalPriceElement = document.getElementById("total-price");
 
-        function displayCart() {
-            cartItemsContainer.innerHTML = "";
-            let total = 0;
+function displayCart() {
 
-            if (cart.length === 0) {
-                cartItemsContainer.innerHTML = "<p>Your cart is empty.</p>";
-                totalPriceElement.innerText = "Total: ₹0";
-                return;
-            }
+    cartItemsContainer.innerHTML = "";
+    let total = 0;
 
-            cart.forEach((product, index) => {
-                total += product.price;
+    if (cart.length === 0) {
+        cartItemsContainer.innerHTML = "<p>Your cart is empty.</p>";
+        totalPriceElement.innerText = "Total: ₹0";
+        return;
+    }
 
-                cartItemsContainer.innerHTML += `
-                    <div class="cart-item">
-                        <img src="${product.image}" width="80">
-                        <div>
-                            <h4>${product.name}</h4>
-                            <p>₹${product.price}</p>
-                            <button onclick="removeItem(${index})">Remove</button>
-                        </div>
-                    </div>
-                `;
-            });
+    cart.forEach((product, index) => {
 
-            totalPriceElement.innerText = "Total: ₹" + total;
-        }
+        total += product.price;
 
-        window.removeItem = function(index) {
-            cart.splice(index, 1);
-            localStorage.setItem("cart", JSON.stringify(cart));
-            displayCart();
-        }
+        cartItemsContainer.innerHTML += `
+            <div style="background:white;padding:15px;margin:10px 0;border-radius:8px;">
+                <img src="${product.image}" width="80">
+                <h4>${product.name}</h4>
+                <p>₹${product.price}</p>
+                <button onclick="removeItem(${index})">
+                Remove
+                </button>
+            </div>
+        `;
+    });
 
-        displayCart();
+    totalPriceElement.innerText = "Total: ₹" + total;
+}
 
-    </script>
+function removeItem(index) {
+    cart.splice(index, 1);
+    localStorage.setItem("cart", JSON.stringify(cart));
+    displayCart();
+}
+
+displayCart();
+
+</script>
 
 </body>
 </html>
