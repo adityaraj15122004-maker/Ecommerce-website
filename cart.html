@@ -2,341 +2,77 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Cart - Dexplaza</title>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-
-    <style>
-        /* --- 1. THEME VARIABLES (Same as Home) --- */
-        :root {
-            --primary: #6c5ce7;
-            --secondary: #a29bfe;
-            --accent: #fd79a8;
-            --gradient: linear-gradient(135deg, #6c5ce7 0%, #a29bfe 100%);
-            --bg-color: #f8f9fd;
-            --white: #ffffff;
-            --text-dark: #2d3436;
-            --text-light: #636e72;
-            --shadow: 0 10px 30px rgba(108, 92, 231, 0.1);
-        }
-
-        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif; text-decoration: none; }
-        body { background-color: var(--bg-color); }
-
-        /* --- 2. NAVBAR (Consistent) --- */
-        .navbar {
-            background: var(--white);
-            height: 70px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 0 5%;
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.05);
-        }
-
-        .logo {
-            font-size: 26px;
-            font-weight: 800;
-            background: var(--gradient);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        .nav-back {
-            color: var(--text-dark);
-            font-weight: 600;
-            display: flex;
-            align-items: center;
-            gap: 5px;
-            transition: 0.3s;
-        }
-        .nav-back:hover { color: var(--primary); }
-
-        /* --- 3. CART LAYOUT --- */
-        .cart-container {
-            max-width: 1200px;
-            margin: 40px auto;
-            padding: 0 20px;
-        }
-
-        .page-title {
-            font-size: 28px;
-            font-weight: 700;
-            color: var(--text-dark);
-            margin-bottom: 20px;
-        }
-
-        .cart-layout {
-            display: grid;
-            grid-template-columns: 2fr 1fr; /* 2 parts for items, 1 part for summary */
-            gap: 30px;
-        }
-
-        /* --- LEFT SIDE: CART ITEMS --- */
-        .cart-items {
-            display: flex;
-            flex-direction: column;
-            gap: 20px;
-        }
-
-        .cart-card {
-            background: var(--white);
-            border-radius: 15px;
-            padding: 20px;
-            display: flex;
-            align-items: center;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.03);
-            transition: 0.3s;
-            position: relative;
-        }
-
-        .cart-card:hover { transform: translateY(-3px); box-shadow: var(--shadow); }
-
-        .item-img {
-            width: 100px;
-            height: 100px;
-            object-fit: contain;
-            margin-right: 20px;
-            background: #f9f9f9;
-            border-radius: 10px;
-            padding: 5px;
-        }
-
-        .item-details { flex-grow: 1; }
-
-        .item-name {
-            font-size: 18px;
-            font-weight: 600;
-            color: var(--text-dark);
-            margin-bottom: 5px;
-        }
-
-        .item-brand { font-size: 13px; color: var(--text-light); margin-bottom: 10px; }
-
-        .item-price {
-            font-size: 18px;
-            font-weight: 700;
-            color: var(--primary);
-        }
-
-        /* Quantity Controls */
-        .qty-box {
-            display: flex;
-            align-items: center;
-            background: #f1f3f6;
-            border-radius: 30px;
-            padding: 5px 10px;
-            width: fit-content;
-            margin-top: 10px;
-        }
-
-        .qty-btn {
-            width: 25px;
-            height: 25px;
-            border: none;
-            background: white;
-            border-radius: 50%;
-            cursor: pointer;
-            font-weight: 700;
-            color: var(--text-dark);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-        }
-        .qty-btn:hover { background: var(--primary); color: white; }
-
-        .qty-input {
-            width: 30px;
-            text-align: center;
-            border: none;
-            background: transparent;
-            font-weight: 600;
-            font-size: 14px;
-        }
-
-        /* Remove Button */
-        .remove-btn {
-            position: absolute;
-            top: 20px;
-            right: 20px;
-            color: #ff7675;
-            cursor: pointer;
-            font-size: 18px;
-            transition: 0.3s;
-        }
-        .remove-btn:hover { color: #d63031; transform: scale(1.1); }
-
-        /* --- RIGHT SIDE: SUMMARY --- */
-        .cart-summary {
-            background: var(--white);
-            border-radius: 15px;
-            padding: 25px;
-            box-shadow: var(--shadow);
-            height: fit-content;
-            position: sticky;
-            top: 100px;
-        }
-
-        .summary-title {
-            font-size: 20px;
-            font-weight: 700;
-            color: var(--text-dark);
-            margin-bottom: 20px;
-            border-bottom: 2px solid #f1f3f6;
-            padding-bottom: 15px;
-        }
-
-        .summary-row {
-            display: flex;
-            justify-content: space-between;
-            margin-bottom: 15px;
-            color: var(--text-light);
-            font-size: 15px;
-        }
-
-        .summary-row.total {
-            color: var(--text-dark);
-            font-weight: 700;
-            font-size: 18px;
-            border-top: 2px solid #f1f3f6;
-            padding-top: 15px;
-            margin-top: 10px;
-        }
-
-        .checkout-btn {
-            width: 100%;
-            padding: 15px;
-            border: none;
-            border-radius: 30px;
-            background: var(--gradient);
-            color: var(--white);
-            font-size: 16px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: 0.3s;
-            margin-top: 20px;
-            box-shadow: 0 5px 15px rgba(108, 92, 231, 0.3);
-        }
-
-        .checkout-btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 10px 20px rgba(108, 92, 231, 0.5);
-        }
-
-        /* Responsive */
-        @media (max-width: 768px) {
-            .cart-layout { grid-template-columns: 1fr; }
-            .cart-card { flex-direction: column; align-items: flex-start; }
-            .item-img { width: 100%; height: 150px; margin-right: 0; margin-bottom: 15px; }
-            .remove-btn { top: 15px; right: 15px; }
-        }
-
-    </style>
+    <title>MyKart - Cart</title>
+    <link rel="stylesheet" href="../css/style.css">
 </head>
 <body>
 
-    <nav class="navbar">
-        <div class="logo">Dexplaza</div>
-        <a href="index.html" class="nav-back"><i class="fa-solid fa-arrow-left"></i> Continue Shopping</a> 
-    </nav>
+    <!-- Navbar -->
+    <div id="navbar"></div>
 
- 
     <div class="cart-container">
-        <h1 class="page-title">Shopping Cart (2 Items)</h1>
+        <h2>Your Shopping Cart 🛒</h2>
 
-        <div class="cart-layout">
-            
-            <div class="cart-items">
-                
-                <div class="cart-card">
-                    <img src="https://m.media-amazon.com/images/I/71eaMcS-2XL.AC_SX679.jpg" class="item-img" alt="Watch">
-                    <div class="item-details">
-                        <div class="item-name">Apple Watch Series 8</div>
-                        <div class="item-brand">Electronics • Apple</div>
-                        <div class="item-price">₹41,900</div>
-                        
-                        <div class="qty-box">
-                            <button class="qty-btn" onclick="decreaseQty(this)">-</button>
-                            <input type="text" value="1" class="qty-input" readonly>
-                            <button class="qty-btn" onclick="increaseQty(this)">+</button>
-                        </div>
-                    </div>
-                    <div class="remove-btn" onclick="removeItem(this)"><i class="fa-solid fa-trash-can"></i></div>
-                </div>
+        <div id="cart-items"></div>
 
-                <div class="cart-card">
-                    <img src="https://m.media-amazon.com/images/I/61Amb2CxcGL.AC_SX679.jpg" class="item-img" alt="Phone">
-                    <div class="item-details">
-                        <div class="item-name">OnePlus Nord CE 3</div>
-                        <div class="item-brand">Mobiles • OnePlus</div>
-                        <div class="item-price">₹18,999</div>
-
-                        <div class="qty-box">
-                            <button class="qty-btn" onclick="decreaseQty(this)">-</button>
-                            <input type="text" value="1" class="qty-input" readonly>
-                            <button class="qty-btn" onclick="increaseQty(this)">+</button>
-                        </div>
-                    </div>
-                    <div class="remove-btn" onclick="removeItem(this)"><i class="fa-solid fa-trash-can"></i></div>
-                </div>
-
-            </div>
-
-            <div class="cart-summary">
-                <div class="summary-title">Order Summary</div>
-                
-                <div class="summary-row">
-                    <span>Subtotal</span>
-                    <span>₹60,899</span>
-                </div>
-                <div class="summary-row">
-                    <span>Shipping Estimate</span>
-                    <span>₹50</span>
-                </div>
-                <div class="summary-row">
-                    <span>Tax Estimate</span>
-                    <span>₹1,200</span>
-                </div>
-                
-                <div class="summary-row total">
-                    <span>Order Total</span>
-                    <span>₹62,149</span>
-                </div>
-
-                <button class="checkout-btn">Proceed to Checkout <i class="fa-solid fa-arrow-right"></i></button>
-            </div>
-
+        <div class="cart-summary">
+            <h3 id="total-price">Total: ₹0</h3>
+            <button id="checkout-btn">Proceed to Checkout</button>
         </div>
     </div>
 
-    <script>
-        // Simple Interaction Scripts (Visual Only)
-        
-        function increaseQty(btn) {
-            let input = btn.previousElementSibling;
-            let value = parseInt(input.value);
-            input.value = value + 1;
+    <!-- Footer -->
+    <div id="footer"></div>
+
+    <script type="module">
+
+        import { loadNavbar } from "../js/components/navbar.js";
+        import { loadFooter } from "../js/components/footer.js";
+
+        document.getElementById("navbar").innerHTML = loadNavbar();
+        document.getElementById("footer").innerHTML = loadFooter();
+
+        let cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+        const cartItemsContainer = document.getElementById("cart-items");
+        const totalPriceElement = document.getElementById("total-price");
+
+        function displayCart() {
+            cartItemsContainer.innerHTML = "";
+            let total = 0;
+
+            if (cart.length === 0) {
+                cartItemsContainer.innerHTML = "<p>Your cart is empty.</p>";
+                totalPriceElement.innerText = "Total: ₹0";
+                return;
+            }
+
+            cart.forEach((product, index) => {
+                total += product.price;
+
+                cartItemsContainer.innerHTML += `
+                    <div class="cart-item">
+                        <img src="${product.image}" width="80">
+                        <div>
+                            <h4>${product.name}</h4>
+                            <p>₹${product.price}</p>
+                            <button onclick="removeItem(${index})">Remove</button>
+                        </div>
+                    </div>
+                `;
+            });
+
+            totalPriceElement.innerText = "Total: ₹" + total;
         }
 
-        function decreaseQty(btn) {
-            let input = btn.nextElementSibling;
-            let value = parseInt(input.value);
-            if(value > 1) {
-                input.value = value - 1;
-            }
+        window.removeItem = function(index) {
+            cart.splice(index, 1);
+            localStorage.setItem("cart", JSON.stringify(cart));
+            displayCart();
         }
 
-        function removeItem(btn) {
-            if(confirm("Remove this item from cart?")) {
-                btn.parentElement.style.display = 'none';
-                // Note: In a real app, this would recalculate the total price
-            }
-        }
+        displayCart();
+
     </script>
 
 </body>
